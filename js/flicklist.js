@@ -3,29 +3,27 @@
 var model = {
   watchlistItems: [],
   browseItems: [],
-  // DONE
-  // add a new field, browseActiveIndex, initially set to 0
   browseActiveIndex: 0
 }
 
 
 var api = {
   root: "https://api.themoviedb.org/3",
-  token: "8e888fa39ec243e662e1fb738c42ae99",
+  token: "29b8dc890b2a89171bcb484d1f1f77e1",
   imageBaseUrl: "http://image.tmdb.org/t/p/"
 }
 
 
 
 /**
- * Makes an AJAX request to the /discover endpoint of the API, using the 
+ * Makes an AJAX request to the /discover endpoint of the API, using the
  * keyword ID that was passed in
  *
  * if successful, updates model.browseItems appropriately and then invokes
  * the callback function that was passed in
  */
 function discoverMovies(data, callback) {
-  // DONE 
+  // DONE
   $.ajax({
     url: api.root + "/discover/movie",
     data: data,
@@ -42,7 +40,7 @@ function discoverMovies(data, callback) {
 
 function searchMovies(query, callback) {
   fetchKeywords(
-    query, 
+    query,
     function(keywordsResponse) {
       console.log("fetch succeeded");
       var firstKeywordID = keywordsResponse.results[0].id
@@ -101,7 +99,7 @@ function render() {
   model.watchlistItems.forEach(function(movie) {
 
     // panel heading
-    var title = $("<h5></h5>").text(movie.original_title);  
+    var title = $("<h5></h5>").text(movie.original_title);
     var panelHeading = $("<div></div>")
       .attr("class", "panel-heading")
       .append(title);
@@ -156,7 +154,7 @@ function render() {
     var carouselItem = $("<div></div>")
       .attr("class", "item")
       .append(poster);
-    
+
     carouselInner.append(carouselItem);
 
     // DONE
@@ -176,7 +174,7 @@ function render() {
     .append(title)
     .append($("<hr/>"))
     .append(overview);
-  
+
   // DONE
   // disable or enable the Add to Watchlist button depending on
   // whether the current active movie is already on the user's watchlist
